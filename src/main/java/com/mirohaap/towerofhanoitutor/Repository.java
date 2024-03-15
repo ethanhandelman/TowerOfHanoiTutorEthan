@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Repository {
+    public static final int NUM_RINGS = 10;
     private static Repository _instance;
     private PropertyChangeSupport changes = new PropertyChangeSupport(this);
     //for each tower, [0] is the bottom, last index is the top
@@ -18,7 +19,7 @@ public class Repository {
         for(int i = 0; i < 3; i++){
             towers.add(new ArrayList<>());
         }
-        for(int i = 10; i > 0; i--){
+        for(int i = NUM_RINGS; i > 0; i--){
             towers.get(0).add(i);
         }
         System.out.println(towers);

@@ -15,6 +15,8 @@ public class Window extends Application {
         stage.setTitle("Tower of Hanoi");
         stage.setScene(scene);
         stage.setResizable(false);
+        // Initialize tutor because long load time.
+        Tutor.getTutor();
         stage.show();
     }
 

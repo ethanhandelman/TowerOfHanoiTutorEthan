@@ -11,18 +11,18 @@ public class Move {
     private int to;
     private boolean valid;
 
-    public Move(int n, int from, int to){
+    public Move(int n, int from, int to) {
         this.n = n;
         this.from = from;
         this.to = to;
         valid = false;
     }
 
-    public void setValid(boolean val){
+    public void setValid(boolean val) {
         valid = val;
     }
 
-    public boolean isValid(){
+    public boolean isValid() {
         return valid;
     }
 
@@ -108,7 +108,6 @@ public class Move {
         if (!(obj instanceof Move attemptedMove)) {
             return false;
         }
-
         return this.getN() == attemptedMove.getN() &&
                 this.getTo() == attemptedMove.getTo() &&
                 this.getFrom() == attemptedMove.getFrom();
