@@ -1,9 +1,14 @@
 package com.mirohaap.towerofhanoitutor;
 
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+
 public class SnapRange {
     private final double ogX, ogY;
     private double maxX, maxY, minX, minY;
     private static final int DEFAULT_SNAP_RANGE = 100;
+    private Ring owner;
+    private int tower;
 
     /**
      * Constructor for SnapRange with specified x, y, and range.
@@ -12,21 +17,34 @@ public class SnapRange {
      * @param y The original Y-coordinate.
      * @param range The snap range.
      */
-    public SnapRange(double x, double y, double range){
+    public SnapRange(double x, double y, double range, int tower){
         ogX = x;
         ogY = y;
         setRange(range);
+        owner = null;
+        this.tower = tower;
     }
 
-    /**
-     * Constructor for SnapRange with specified x, y, and default snap range.
-     *
-     * @param x The original X-coordinate.
-     * @param y The original Y-coordinate.
-     */
-    public SnapRange(double x, double y){
-        this(x, y, DEFAULT_SNAP_RANGE);
+    @Override
+    public String toString() {
+        return "SnapRange{" +
+                "ogX=" + ogX +
+                ", ogY=" + ogY +
+                ", maxX=" + maxX +
+                ", maxY=" + maxY +
+                ", minX=" + minX +
+                ", minY=" + minY +
+                ", owner=" + owner +
+                ", tower=" + tower +
+                '}';
     }
+
+    public SnapRange(double x, double y, double range, Ring owner){
+        this(x, y, range, Repository.getInstance().getTower(owner.getNum()));
+        this.owner = owner;
+    }
+
+
 
     /**
      * Checks if the given coordinates are within the snap range.
@@ -50,4 +68,30 @@ public class SnapRange {
         minX = ogX - range;
         minY = ogY - range;
     }
+
+    public double getOgX(){
+        return ogX;
+    }
+
+    public double getOgY(){
+        return ogY;
+    }
+
+    public boolean hasOwner(){
+        return owner != null;
+    }
+
+    public boolean isOwner(Ring ring){
+        return ring == owner;
+    }
+
+    public Ring getOwner(){
+        return owner;
+    }
+
+    public int getTower(){
+        return tower;
+    }
+
+
 }

@@ -9,12 +9,23 @@ public class Move {
     private int n;
     private int from;
     private int to;
+    private boolean valid;
 
     public Move(int n, int from, int to){
         this.n = n;
         this.from = from;
         this.to = to;
+        valid = false;
     }
+
+    public void setValid(boolean val){
+        valid = val;
+    }
+
+    public boolean isValid(){
+        return valid;
+    }
+
 
     /**
      * Returns the disk number of the move.
